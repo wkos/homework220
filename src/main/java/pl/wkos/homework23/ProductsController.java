@@ -19,23 +19,16 @@ public class ProductsController {
 
     @ResponseBody
     @GetMapping("/products")
-    public String listOfProducts(@RequestParam(required = false) String category) {
-        List<Product> productList = productRepository.getAll();
-
-        Category categoryFromParam = ProductUtils.getCategoryFromParameter(category);
-        List<Product> productsInCategory;
-        if (categoryFromParam == null) {
-            productsInCategory = productList;
-        } else {
-            productsInCategory = ProductUtils.listOfProductsInCategory(productList, categoryFromParam);
-        }
-
-        return ProductUtils.createDataToHtmlWithPrice(productsInCategory, categoryFromParam);
+    public String listOfProducts(@RequestParam(required = false) String  category) {
+        Category categoryFromParam = Category.getCategoryFromParameter(category);
+        List<Product> productsInCategory = ProductRepository.listOfProductsInCategory(categoryFromParam);
+        return ProductUtils.createDataToHtml(productsInCategory) +
+                String.format("%.2f",ProductRepository.priceOfAllInCategory(categoryFromParam));
     }
 
     @GetMapping("/add")
     public String add(@RequestParam String name, @RequestParam Double price, @RequestParam String category) {
-        Category categoryFromParam = ProductUtils.getCategoryFromParameter(category);
+        Category categoryFromParam = Category.getCategoryFromParameter(category);
         productRepository.add(new Product(name, price, categoryFromParam));
         return "redirect:add.html";
     }

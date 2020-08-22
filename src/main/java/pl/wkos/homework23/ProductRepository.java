@@ -2,12 +2,14 @@ package pl.wkos.homework23;
 
 import org.springframework.stereotype.Repository;
 
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
-    List<Product> productList;
+    private static List<Product> productList;
 
     public ProductRepository() {
         productList = new ArrayList<>();
@@ -26,8 +28,25 @@ public class ProductRepository {
         productList.add(product);
     }
 
-    public List<Product> getAll() {
+    public static List<Product> getAll() {
         return new ArrayList<>(productList);
     }
 
+    public static double priceOfAllInCategory(Category category) {
+        List<Product> products = listOfProductsInCategory(category);
+        return products.stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
+    }
+
+    public static List<Product> listOfProductsInCategory(Category category) {
+        List<Product> products = getAll();
+        if (category == null) {
+            return products;
+        } else {
+            return products.stream()
+                    .filter(product -> product.getCategory().equals(category))
+                    .collect(Collectors.toList());
+        }
+    }
 }

@@ -22,4 +22,17 @@ public enum Category {
                 "category='" + category + '\'' +
                 '}';
     }
+
+    public static Category getCategoryFromParameter(String parameter) {
+        switch (parameter) {
+            case "spozywcze":
+                return Category.CROCERIES;
+            case "domowe":
+                return Category.HOUSEHOLD;
+            case "inne":
+                return Category.OTHER;
+            default:
+                return null;
+        }
+    }
 }
