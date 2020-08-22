@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie produktów</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Dodaj produkt</h1>
+<form method="get" action="/add">
+    <div class="form-group">
+        <label for="name">Nazwa produktu</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="price">Cena</label>
+        <input type="number" step="any" class="form-control" id="price" name="price">
+    </div>
+    <div class="form-group">
+        <label for="category">Kategoria</label>
+        <select id="category" class="form-control" name="category" required>
+<!--            <option selected value="notselcted">Wybierz...</option>-->
+            <option value="spozywcze">Art. spożywcze</option>
+            <option value="domowe">Art. gosp. domowego</option>
+            <option value="inne">Inne</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    </div>
+</form>
+<div class="form-group">
+    <a href="index.html">
+        <button type="submit" class="btn btn-primary">Strona główna</button>
+    </a>
+</div>
+</body>
+</html>

@@ -1,13 +1,13 @@
-package pl.wkos.homework220;
+package pl.wkos.homework23;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Homework220Application {
+public class Homework23Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Homework220Application.class, args);
+        SpringApplication.run(Homework23Application.class, args);
     }
 
 }
